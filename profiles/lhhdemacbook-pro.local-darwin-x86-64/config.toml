@@ -1,0 +1,102 @@
+model = "gpt-5.5"
+model_reasoning_effort = "low"
+[desktop]
+followUpQueueMode = "steer"
+conversationDetailMode = "STEPS_COMMANDS"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/Users/lutao/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/Users/lutao/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[mcp_servers.chatcut_desktop]
+command = "/Users/lutao/Library/Application Support/ChatCut/chatcut-mcp"
+
+[mcp_servers.chatcut_desktop.env]
+CHATCUT_MCP_CLIENT = "codex_app"
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/lutao/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/lutao/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.917.62051"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/lutao/.codex/plugins/cache/openai-bundled/browser/26.917.62051/scripts/browser-service.mjs"}'
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+
+[projects."/Users/lutao/Documents/Codex/2026-09-10/ni"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-09-10/he-l"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-09-10/ni-2"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-09-10/wei"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-09-22/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-09-24/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-09-24/referenced-chatgpt-conversation-this-is-an"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-13/new-chat-3"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-13/codex-reconnecting-codex-env"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-13/xi"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-13/wo"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-13/new-chat-4"]
+trust_level = "trusted"

@@ -1,0 +1,9 @@
+{
+  "surfaces": [
+    "builtin",
+    "codex-acp",
+    "claude-acp",
+    "codex-external",
+    "external"
+  ]
+}

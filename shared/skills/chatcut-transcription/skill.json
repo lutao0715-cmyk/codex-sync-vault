@@ -1,0 +1,12 @@
+{
+  "surfaces": [
+    "builtin",
+    "codex-acp",
+    "claude-acp",
+    "codex-external",
+    "external"
+  ],
+  "models": {
+    "gemini-3.6-flash": "SKILL.gemini-3.6-flash.md"
+  }
+}

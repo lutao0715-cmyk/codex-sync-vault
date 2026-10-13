@@ -1,0 +1,3 @@
+{
+  "surfaces": ["codex-acp", "claude-acp", "codex-external", "external"]
+}

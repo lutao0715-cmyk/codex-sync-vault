@@ -1,0 +1,3 @@
+interface:
+  display_name: "Codex Sync"
+  short_description: "Sync portable Codex settings, skills, and plugin enablement"
