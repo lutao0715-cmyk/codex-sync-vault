@@ -233,7 +233,7 @@ def git_pull(vault: Path) -> None:
         raise RuntimeError("Could not pull the sync vault. Resolve Git conflicts in " + str(vault))
 
 
-def git_commit_push(vault: Path) -> None:
+def git_commit_push(vault: Path) -> bool:
     run(["git", "add", "."], cwd=vault)
     status = run(["git", "status", "--porcelain"], cwd=vault).stdout.strip()
     if status:
@@ -246,6 +246,9 @@ def git_commit_push(vault: Path) -> None:
         if proc.returncode:
             print("Push failed. If the GitHub repo does not exist yet, create it as a private repo, then rerun sync.")
             print((proc.stderr or proc.stdout).strip())
+            return False
+        return True
+    return False
 
 
 def configure_git_identity(vault: Path) -> None:
@@ -295,8 +298,11 @@ def cmd_push(args: argparse.Namespace) -> None:
     vault = ensure_vault(remote)
     configure_git_identity(vault)
     export_to_vault(vault)
-    git_commit_push(vault)
-    print("Pushed this machine's portable Codex content to the vault.")
+    pushed = git_commit_push(vault)
+    if pushed:
+        print("Pushed this machine's portable Codex content to the remote vault.")
+    else:
+        print("Exported this machine's portable Codex content to the local vault.")
 
 
 def cmd_sync(args: argparse.Namespace) -> None:
@@ -312,8 +318,11 @@ def cmd_sync(args: argparse.Namespace) -> None:
         print(exc)
         print("Continuing with local export; remote conflicts must be resolved manually.")
     export_to_vault(vault)
-    git_commit_push(vault)
-    print("Codex portable sync finished.")
+    pushed = git_commit_push(vault)
+    if pushed:
+        print("Codex portable sync finished and pushed to the remote vault.")
+    else:
+        print("Codex portable sync finished locally; remote push did not complete.")
 
 
 def main() -> int:
