@@ -12,33 +12,6 @@ source = "/Users/lutao/.codex/.tmp/bundled-marketplaces/openai-bundled"
 source_type = "local"
 source = "/Users/lutao/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
-[plugins."codex-app-tools@openai-bundled"]
-enabled = true
-
-[plugins."visualize@openai-bundled"]
-enabled = true
-
-[plugins."documents@openai-primary-runtime"]
-enabled = true
-
-[plugins."pdf@openai-primary-runtime"]
-enabled = true
-
-[plugins."spreadsheets@openai-primary-runtime"]
-enabled = true
-
-[plugins."presentations@openai-primary-runtime"]
-enabled = true
-
-[plugins."template-creator@openai-primary-runtime"]
-enabled = true
-
-[plugins."browser@openai-bundled"]
-enabled = true
-
-[plugins."unified-computer-use@openai-bundled"]
-enabled = true
-
 [mcp_servers.chatcut_desktop]
 command = "/Users/lutao/Library/Application Support/ChatCut/chatcut-mcp"
 
@@ -100,3 +73,30 @@ trust_level = "trusted"
 
 [projects."/Users/lutao/Documents/Codex/2026-10-13/new-chat-4"]
 trust_level = "trusted"
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
