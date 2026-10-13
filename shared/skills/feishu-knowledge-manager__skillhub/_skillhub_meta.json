@@ -1,0 +1,11 @@
+{
+  "slug": "feishu-knowledge-manager",
+  "name": "飞书知识管理",
+  "version": "1.0.0",
+  "installedAt": 1786335567799,
+  "source": "skillhub",
+  "iconSource": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/27205dc2-3c4b-4854-85b1-8902f05745a3.png",
+  "iconLocalPath": "C:/Users/win/.workbuddy/skills/feishu-knowledge-manager__skillhub/_icon.png",
+  "iconDownloadedFrom": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/27205dc2-3c4b-4854-85b1-8902f05745a3.png",
+  "installedContentHash": "sha256:9080fe37b2400affc18bd482d309102e330216723b3a3bc3f64a2be7cbebdebe"
+}

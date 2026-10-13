@@ -1,0 +1,19 @@
+{
+  "slug": "humanizer-zh",
+  "name": "humanizer-zh",
+  "version": "1.0.0",
+  "installedAt": 1789879824424,
+  "source": "skillhub",
+  "namespace": "clawhub_liuxy951129-cpu",
+  "canonicalName": "@clawhub_liuxy951129-cpu/humanizer-zh",
+  "iconSource": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/2d8152d9-7618-454e-9d87-2487f1b4457f.png",
+  "labels": {
+    "requires_api_key": "false"
+  },
+  "description_zh": "去除文本中的 AI 生成痕迹。适用于编辑或审阅文本，使其听起来更自然、更像人类书写。\n基于维基百科的\"AI 写作特征\"综合指南。检测并修复以下模式：夸大的象征意义、\n宣传性语言、以 -ing 结尾的肤浅分析、模糊的归因、破折号过度使用、三段式法则、\nAI 词汇、否定式排比、过多的连接性短语。",
+  "description_en": "去除文本中的 AI 生成痕迹。适用于编辑或审阅文本，使其听起来更自然、更像人类书写。\n基于维基百科的\"AI 写作特征\"综合指南。检测并修复以下模式：夸大的象征意义、\n宣传性语言、以 -ing 结尾的肤浅分析、模糊的归因、破折号过度使用、三段式法则、\nAI 词汇、否定式排比、过多的连接性短语。",
+  "installs": 83946,
+  "iconLocalPath": "C:/Users/win/.workbuddy/skills/humanizer-zh__skillhub/_icon.png",
+  "iconDownloadedFrom": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/2d8152d9-7618-454e-9d87-2487f1b4457f.png",
+  "installedContentHash": "sha256:7061184ed1c49b6d4ba577dff844f97a8b81203284d6e9973aa851d71b18eb8d"
+}

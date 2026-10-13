@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自动剪辑台</title>
+<link rel="stylesheet" href="/templates/panel.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ── 顶栏 ───────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M4 6.5A1.5 1.5 0 0 1 5.5 5h13A1.5 1.5 0 0 1 20 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5v-11Z"
+              fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M10 9.6v4.8l4.2-2.4L10 9.6Z" fill="currentColor"/>
+        <path d="M2 9v6M22 9v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span>自动剪辑台</span>
+    </div>
+
+    <div class="filechip" id="fileChip" title="当前素材">
+      <span class="dot"></span><span class="name">未载入素材</span>
+    </div>
+
+    <nav class="modes" id="modes">
+      <button data-mode="silence" class="active">去静音</button>
+      <button data-mode="scene">分镜切分</button>
+      <button data-mode="beat">卡点</button>
+    </nav>
+
+    <div class="spacer"></div>
+
+    <button id="btnAnalyze" class="ghost" disabled>
+      <svg viewBox="0 0 24 24" width="15" height="15"><path d="M4 19V9M9.5 19V5M15 19v-6M20.5 19V8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+      分析
+    </button>
+    <button id="btnPlan" class="ghost" disabled>
+      <svg viewBox="0 0 24 24" width="15" height="15"><path d="M5 6h14M5 12h9M5 18h11" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+      生成方案
+    </button>
+    <button id="btnPreview" class="ghost" disabled title="低清快速渲染，用来验证节奏">
+      <svg viewBox="0 0 24 24" width="15" height="15"><path d="M12 5c5 0 8.5 4.2 9.5 7-1 2.8-4.5 7-9.5 7S3.5 14.8 2.5 12C3.5 9.2 7 5 12 5Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.6" fill="currentColor"/></svg>
+      预览
+    </button>
+    <button id="btnRender" class="primary" disabled>
+      <svg viewBox="0 0 24 24" width="15" height="15"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      导出成片
+    </button>
+  </header>
+
+  <main class="body">
+
+    <!-- ── 左栏：素材 ──────────────────────────────────── -->
+    <aside class="panel left">
+      <div class="panel-head">素材</div>
+
+      <div class="dropzone" id="dropzone">
+        <svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 16v2.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="dz-main">拖视频进来</p>
+        <p class="dz-sub">或点击选择 · mp4 / mov / mkv / mp3</p>
+        <input type="file" id="fileInput" accept="video/*,audio/*" hidden>
+      </div>
+
+      <div class="pathrow">
+        <input type="text" id="pathInput" placeholder="也可以粘贴本机绝对路径" spellcheck="false">
+        <button id="btnAttach" class="mini">载入</button>
+      </div>
+
+      <div class="field" id="musicField">
+        <label>音乐 / BGM</label>
+        <div class="pathrow">
+          <input type="text" id="musicInput" placeholder="卡点模式下选填" spellcheck="false">
+          <button id="btnAttachMusic" class="mini">载入</button>
+        </div>
+      </div>
+
+      <div class="panel-head sub">素材信息</div>
+      <dl class="kv" id="mediaInfo">
+        <div><dt>状态</dt><dd class="muted">等待载入</dd></div>
+      </dl>
+    </aside>
+
+    <!-- ── 中间：预览 ──────────────────────────────────── -->
+    <section class="stage">
+      <div class="viewer" id="viewer">
+        <video id="video" playsinline controls preload="metadata"></video>
+        <div class="viewer-empty" id="viewerEmpty">
+          <svg viewBox="0 0 24 24" width="40" height="40"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 10.2v3.6l3.4-1.8-3.4-1.8Z" fill="currentColor"/></svg>
+          <p>还没有素材</p>
+        </div>
+      </div>
+      <div class="transport">
+        <button class="tbtn" id="btnPlay" title="播放 / 暂停">
+          <svg viewBox="0 0 24 24" width="16" height="16" id="iconPlay"><path d="M8 5.5v13l10.5-6.5L8 5.5Z" fill="currentColor"/></svg>
+        </button>
+        <span class="time" id="timeNow">00:00.000</span>
+        <div class="seek" id="seek">
+          <div class="seek-fill" id="seekFill"></div>
+          <div class="seek-head" id="seekHead"></div>
+        </div>
+        <span class="time muted" id="timeTotal">00:00.000</span>
+        <label class="rate">倍速
+          <select id="rate">
+            <option>0.5</option><option>1</option><option>1.5</option><option>2</option><option>4</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <!-- ── 右栏：参数 ──────────────────────────────────── -->
+    <aside class="panel right">
+      <div class="panel-head">参数</div>
+
+      <!-- 去静音 -->
+      <div class="params" data-for="silence">
+        <div class="field">
+          <label>静音阈值 <b id="vNoise">-30</b> dB</label>
+          <input type="range" id="noise_db" min="-60" max="-10" step="1" value="-30">
+          <p class="hint">越低越严格，只砍真·无声段</p>
+        </div>
+        <div class="field">
+          <label>最短静音 <b id="vMinSil">0.35</b> s</label>
+          <input type="range" id="min_silence" min="0.1" max="2" step="0.05" value="0.35">
+          <p class="hint">短于这个时长的停顿不动它，保呼吸感</p>
+        </div>
+        <div class="field">
+          <label>处理方式</label>
+          <div class="seg" id="silenceMode">
+            <button data-v="cut" class="active">直接删掉</button>
+            <button data-v="speed">加速播放</button>
+          </div>
+        </div>
+        <div class="field" data-when="speed">
+          <label>静音加速倍率 <b id="vSilSpeed">4</b> ×</label>
+          <input type="range" id="silence_speed" min="1.5" max="12" step="0.5" value="4">
+        </div>
+        <div class="field">
+          <label>最短保留片段 <b id="vMinKeep">0.25</b> s</label>
+          <input type="range" id="min_keep" min="0" max="1.5" step="0.05" value="0.25">
+          <p class="hint">防止成片碎成一地</p>
+        </div>
+      </div>
+
+      <!-- 分镜 -->
+      <div class="params" data-for="scene" hidden>
+        <div class="field">
+          <label>切换灵敏度 <b id="vThr">0.30</b></label>
+          <input type="range" id="threshold" min="0.05" max="0.9" step="0.01" value="0.30">
+          <p class="hint">调低抓更多镜头，调高只抓硬切</p>
+        </div>
+        <div class="field">
+          <label>最短镜头 <b id="vMinScene">0.6</b> s</label>
+          <input type="range" id="min_scene" min="0.2" max="4" step="0.1" value="0.6">
+        </div>
+        <div class="field">
+          <label>丢弃短于 <b id="vDrop">0</b> s 的镜头</label>
+          <input type="range" id="drop_shorter_than" min="0" max="3" step="0.1" value="0">
+          <p class="hint">0 = 全部保留</p>
+        </div>
+      </div>
+
+      <!-- 卡点 -->
+      <div class="params" data-for="beat" hidden>
+        <div class="field">
+          <label>节拍灵敏度 <b id="vSens">1.0</b></label>
+          <input type="range" id="sensitivity" min="0" max="3" step="0.1" value="1">
+        </div>
+        <div class="field">
+          <label>每几拍切一次 <b id="vBpc">1</b> 拍</label>
+          <input type="range" id="beats_per_cut" min="1" max="8" step="1" value="1">
+          <p class="hint">1 = 每拍都切，节奏最密</p>
+        </div>
+        <div class="field">
+          <label>跳剪步进 <b id="vStride">1.35</b> ×</label>
+          <input type="range" id="stride" min="1" max="3" step="0.05" value="1.35">
+          <p class="hint">1 倍 = 画面连续；越大跳跃感越强</p>
+        </div>
+        <div class="field">
+          <label>跳过前 <b id="vLead">0</b> s</label>
+          <input type="range" id="lead_in" min="0" max="20" step="0.5" value="0">
+          <p class="hint">前奏没鼓点的话，从这里之后才开始切</p>
+        </div>
+      </div>
+
+      <div class="panel-head sub">输出</div>
+      <div class="params">
+        <div class="field row">
+          <label>画质 CRF <b id="vCrf">20</b></label>
+          <input type="range" id="crf" min="14" max="32" step="1" value="20">
+          <p class="hint">数值越小越清晰、文件越大</p>
+        </div>
+        <div class="field">
+          <label>画面比例</label>
+          <div class="seg" id="aspect">
+            <button data-v="src" class="active">保持原样</button>
+            <button data-v="9:16">竖屏</button>
+            <button data-v="1:1">方形</button>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" id="loudnorm" checked> 响度归一化到 -16 LUFS</label>
+        <div class="field row2">
+          <div><label>淡入 <b id="vFi">0</b> s</label><input type="range" id="fade_in" min="0" max="3" step="0.1" value="0"></div>
+          <div><label>淡出 <b id="vFo">0</b> s</label><input type="range" id="fade_out" min="0" max="3" step="0.1" value="0"></div>
+        </div>
+      </div>
+
+      <div class="panel-head sub">
+        <span>音频处理</span>
+        <span class="badge" id="audioBadge">关闭</span>
+      </div>
+
+      <div class="params" id="audioPanel">
+        <div class="field">
+          <label>一键预设</label>
+          <div class="rowfill">
+            <select id="audioPreset" class="sel"></select>
+            <button id="btnSuggest" class="mini" disabled>自动</button>
+          </div>
+          <p class="hint" id="audioHint">
+            选中一个预设，下面各项会自动填好，之后可以再手调。
+            点「自动」会先量一遍素材的底噪，再按实测值给建议。
+          </p>
+        </div>
+        <p class="hint" id="probeOut" hidden></p>
+
+        <details class="grp" id="grpDenoise" open>
+          <summary>降噪与频段清理</summary>
+          <div class="grp-body">
+            <div class="field">
+              <label>降噪档位</label>
+              <select id="denoise" class="sel">
+                <option value="none">不降噪</option>
+                <option value="light">轻</option>
+                <option value="standard">标准</option>
+                <option value="strong">强（= 标准 + 噪声门）</option>
+              </select>
+              <p class="hint">
+                底噪已经很干净的素材别开降噪——换不来信噪比，只会多出伪影。
+                「强」不是更狠的降噪：实测加深降噪会连人声一起削，
+                所以它改成「标准降噪 + 一道 -38dB 噪声门」，靠门去压空档里的底噪。
+              </p>
+            </div>
+            <div class="field row2">
+              <div><label>低切 <b id="vHp">0</b> Hz</label>
+                <input type="range" id="highpass" min="0" max="300" step="5" value="0"></div>
+              <div><label>高切 <b id="vLp">0</b> Hz</label>
+                <input type="range" id="lowpass" min="0" max="20000" step="500" value="0"></div>
+            </div>
+            <p class="hint">50Hz 交流哼声、空调嗡嗡声用低切解决，降噪器对它无效。</p>
+            <label class="check"><input type="checkbox" id="gate"> 噪声门</label>
+            <div class="field" data-when="gate" hidden>
+              <label>门限 <b id="vGate">-45</b> dB</label>
+              <input type="range" id="gate_db" min="-70" max="-10" step="1" value="-45">
+              <p class="hint">门限必须高于实际底噪，否则门是关不上的</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="grp" id="grpTone">
+          <summary>音色</summary>
+          <div class="grp-body">
+            <div class="field">
+              <label>厚度（200Hz） <b id="vWarm">0</b> dB</label>
+              <input type="range" id="warmth" min="-8" max="8" step="0.5" value="0">
+            </div>
+            <div class="field">
+              <label>清晰度（3.2kHz） <b id="vPres">0</b> dB</label>
+              <input type="range" id="presence" min="-8" max="8" step="0.5" value="0">
+              <p class="hint">口齿不清时加 2~3dB，加多了会发齿音</p>
+            </div>
+            <div class="field">
+              <label>齿音（7kHz） <b id="vDeess">0</b> dB</label>
+              <input type="range" id="deess" min="-8" max="0" step="0.5" value="0">
+              <p class="hint">衰减齿音请往负方向拉</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="grp" id="grpDyn">
+          <summary>动态与电平</summary>
+          <div class="grp-body">
+            <label class="check"><input type="checkbox" id="compress"> 压缩器</label>
+            <div data-when="compress" hidden>
+              <div class="field">
+                <label>门限 <b id="vComp">-18</b> dB</label>
+                <input type="range" id="comp_db" min="-40" max="-3" step="1" value="-18">
+              </div>
+              <div class="field">
+                <label>压缩比 <b id="vRatio">3</b> : 1</label>
+                <input type="range" id="comp_ratio" min="1" max="10" step="0.5" value="3">
+                <p class="hint">音量忽大忽小的素材靠它拉齐</p>
+              </div>
+            </div>
+            <div class="field">
+              <label>整体增益 <b id="vGain">0</b> dB</label>
+              <input type="range" id="gain_db" min="-12" max="12" step="0.5" value="0">
+            </div>
+          </div>
+        </details>
+
+        <details class="grp" id="grpStereo">
+          <summary>立体声</summary>
+          <div class="grp-body">
+            <div class="field">
+              <div class="seg" id="stereo">
+                <button data-v="keep" class="active">原样</button>
+                <button data-v="center_boost">人声靠前</button>
+                <button data-v="center_remove">去人声</button>
+                <button data-v="mono">单声道</button>
+              </div>
+              <p class="hint">
+                靠 mid-side 矩阵做的近似分离，不是真声源分离。对中置人声的
+                普通立体声混音有效，对已经做宽的人声基本无效。<br>
+                「人声靠前」只在立体声播放时有效——单声道折叠后中侧比
+                无从体现，效果会消失（这是数学决定的，不是没调好）。
+                「去人声」不受此限。
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <div class="audition">
+          <button id="btnAudition" class="mini wide" disabled>
+            <svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 14v-4h3l4-4v12l-4-4H4Z" fill="currentColor"/><path d="M15 9.5a3.5 3.5 0 0 1 0 5M17.5 7a7 7 0 0 1 0 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            试听处理后的音轨
+          </button>
+          <audio id="auditionPlayer" controls hidden></audio>
+          <p class="hint" id="auditionHint">只出音轨，跟最终成片走同一条处理链。</p>
+        </div>
+      </div>
+
+      <div class="panel-head sub">方案统计</div>
+      <dl class="kv" id="planStats">
+        <div><dt>片段</dt><dd class="muted">—</dd></div>
+      </dl>
+    </aside>
+  </main>
+
+  <!-- ── 时间线 ─────────────────────────────────────────── -->
+  <section class="timeline">
+    <div class="tl-head">
+      <span class="tl-title">时间线</span>
+      <div class="legend">
+        <i class="lg-keep"></i>保留
+        <i class="lg-sil"></i>静音
+        <i class="lg-scene"></i>镜头切点
+        <i class="lg-beat"></i>节拍
+      </div>
+      <div class="spacer"></div>
+      <span class="tl-tip" id="tlTip">滚轮缩放 · 拖动平移 · 点片段可临时停用</span>
+      <button class="mini" id="btnTlFit">全览</button>
+      <button class="mini" id="btnTlReset">还原片段</button>
+    </div>
+    <div class="tl-wrap" id="tlWrap">
+      <canvas id="tl"></canvas>
+    </div>
+  </section>
+
+  <!-- ── 状态栏 ─────────────────────────────────────────── -->
+  <footer class="statusbar">
+    <span class="status-msg" id="statusMsg">就绪</span>
+    <div class="progress" id="progressWrap" hidden>
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <span class="status-right" id="statusRight"></span>
+  </footer>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+<script src="/templates/panel.js"></script>
+</body>
+</html>

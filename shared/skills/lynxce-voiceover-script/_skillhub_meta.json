@@ -1,0 +1,11 @@
+{
+  "name": "口播稿与配音提示",
+  "installedAt": 1789459668520,
+  "source": "marketplace",
+  "version": "1.0.0",
+  "skillId": "skill_2096835738919280640",
+  "iconSource": "https://openplatform-cdn.codebuddy.cn/public/common/capability_cover/8c48feb8-de4f-4beb-9561-41a8ef28ab86/cc3b93c5-ff9b-407f-b463-99133bb5a0d0.png",
+  "iconLocalPath": "C:/Users/win/.workbuddy/skills/lynxce-voiceover-script/_icon.png",
+  "iconDownloadedFrom": "https://openplatform-cdn.codebuddy.cn/public/common/capability_cover/8c48feb8-de4f-4beb-9561-41a8ef28ab86/cc3b93c5-ff9b-407f-b463-99133bb5a0d0.png",
+  "installedContentHash": "sha256:7b646acedad38bd4af828026338653955794350fb9fff8e3c62d5a493a5be241"
+}

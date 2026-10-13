@@ -1,0 +1,61 @@
+{
+  "form": {
+    "fields": [
+      {
+        "file_types": [
+          "video"
+        ],
+        "hint": "需要处理的视频文件；参数收集阶段只确认附件存在、数量、类型和字段归属；不得读取或解析附件内容，不得从附件提取其他参数。",
+        "key": "video",
+        "label": "上传视频",
+        "maxCount": 1,
+        "required": true,
+        "type": "file_upload"
+      },
+      {
+        "default": "画质增强",
+        "key": "type",
+        "label": "处理类型",
+        "options": [
+          {
+            "key": "画质增强",
+            "label": "画质增强"
+          },
+          {
+            "key": "去水印",
+            "label": "去水印"
+          },
+          {
+            "key": "去字幕",
+            "label": "去字幕"
+          },
+          {
+            "key": "音频处理",
+            "label": "音频处理"
+          },
+          {
+            "key": "视频裁剪",
+            "label": "视频裁剪"
+          }
+        ],
+        "type": "radio_tags"
+      },
+      {
+        "hint": "仅填写用户明确提出的附加约束；未明确提出时留空，不得根据素材、文件名或任务类型推断。",
+        "key": "extra",
+        "label": "处理说明",
+        "maxLength": 500,
+        "placeholder": "具体要处理的内容",
+        "type": "textarea"
+      }
+    ],
+    "prompt": "[视频剪辑]对上传的视频进行处理。\n上传视频：{video}\n处理类型：{type}\n处理说明：{extra}"
+  },
+  "schema_version": 1,
+  "skill": {
+    "category": "视频创作",
+    "description": "对现有视频进行剪辑、拼接、节奏调整、画质增强和常规后期。适用于视频剪辑、短视频剪辑、口播剪辑、video editing、post production。美图设计室提供。",
+    "id": "video-post",
+    "title": "视频剪辑"
+  }
+}

@@ -1,0 +1,3 @@
+display_name: 信息同步
+short_description: Sync portable Codex skills and local plugin assets between Windows and Mac.
+default_prompt: 帮我执行信息同步，把这台电脑上的 Codex 技能和本地插件资产与我的另一台电脑同步。

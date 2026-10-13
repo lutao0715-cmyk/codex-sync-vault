@@ -1,0 +1,11 @@
+{
+  "name": "AI 短视频生成器",
+  "installedAt": 1789135898226,
+  "source": "marketplace",
+  "version": "1.0.0",
+  "skillId": "skill_2095083515063328768",
+  "iconSource": "https://openplatform-cdn.codebuddy.cn/public/common/capability_cover/cf14e0dd-ed5f-47da-b436-77ee96f97427/3a01a7a4-2d69-45f3-8bae-dd74fd20910e.png",
+  "iconLocalPath": "C:/Users/win/.workbuddy/skills/ai-short-video-maker/_icon.png",
+  "iconDownloadedFrom": "https://openplatform-cdn.codebuddy.cn/public/common/capability_cover/cf14e0dd-ed5f-47da-b436-77ee96f97427/3a01a7a4-2d69-45f3-8bae-dd74fd20910e.png",
+  "installedContentHash": "sha256:eda3d7c5b243ee1a30e7dd54c3848c7912401cd5a42945fd828b29e3e52dc9bf"
+}

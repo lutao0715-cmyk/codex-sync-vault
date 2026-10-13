@@ -1,0 +1,164 @@
+model = "gpt-5.5"
+model_reasoning_effort = "low"
+notify = [ "C:\\Users\\win\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\cfb32733c877621e\\bin\\node_modules\\@oai\\sky\\bin\\windows\\codex-computer-use.exe", "turn-ended" ]
+[desktop]
+followUpQueueMode = "steer"
+conversationDetailMode = "STEPS_COMMANDS"
+sansFontSize = 14
+codeFontSize = 13
+ambient-suggestions-enabled = true
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = '\\?\C:\Users\win\.codex\.tmp\bundled-marketplaces\openai-bundled'
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = '\\?\C:\Users\win\.cache\codex-runtimes\codex-primary-runtime\plugins\openai-primary-runtime'
+
+[mcp_servers.node_repl]
+args = []
+command = 'C:\Users\win\AppData\Local\OpenAI\Codex\runtimes\cua_node\cfb32733c877621e\bin\node_repl.exe'
+env_vars = ["CODEX_WINDOWS_REGISTERED_CORE"]
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = 'C:\Users\win\AppData\Local\OpenAI\Codex\runtimes\cua_node\cfb32733c877621e\bin\node_modules'
+NODE_REPL_NODE_PATH = 'C:\Users\win\AppData\Local\OpenAI\Codex\runtimes\cua_node\cfb32733c877621e\bin\node.exe'
+NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\win\.codex;C:\Users\win\AppData\Local\OpenAI\Codex\runtimes\cua_node\cfb32733c877621e\bin\node_modules'
+CODEX_HOME = 'C:\Users\win\.codex'
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab,mcpapps"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.1007.21434"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"C:/Users/win/.codex/plugins/cache/openai-bundled/browser/26.1007.21434/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_NATIVE_PIPE = "1"
+SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-3e005ba0-67d7-41e4-90c1-a15d7be9bc84'
+CODEX_CLI_PATH = "C://Users//win//.codex//packages//standalone//current//bin//codex.exe"
+NODE_REPL_UNTRUSTED_ENV_ALLOWLIST = "CODEX_WINDOWS_REGISTERED_CORE"
+
+[windows]
+sandbox = "elevated"
+
+[projects.'c:\users\win\documents\codex\2026-09-09\new-chat']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-09-09\new-chat-2']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-09-09\new-chat-3']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-09-11\new-chat']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-09-11\perl-set-up-https-github-com']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-09-15\gt-2']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-11\gt']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-11\gt-2']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\gt']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\new-chat']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\new-chat-2']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\ai']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\x20']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\x20-2']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\x20-3']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\x20-4']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\x20-5']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\human']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\eastern']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\skill-creator-c-users-win-codex']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\x20-6']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\new-chat-3']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\50-codex']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\new-chat-4']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\new-chat-5']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\new-chat-6']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-12\new-chat-7']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-13\x20']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-13\new-chat']
+trust_level = "trusted"
+
+[projects.'c:\users\win\documents\codex\2026-10-13\new-chat-2']
+trust_level = "trusted"
+
+[computer_use.windows.always_allowed_app_ids]
+"jianyingpro.exe" = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true

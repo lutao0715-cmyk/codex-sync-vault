@@ -1,0 +1,11 @@
+{
+  "name": "音乐生成工作室",
+  "installedAt": 1789908799157,
+  "source": "marketplace",
+  "version": "0.2.1",
+  "skillId": "skill_2095495404904751104",
+  "description_zh": "从主题、歌词、画面或参考音频开始，明确曲风、结构与人声方向，制作可试听的歌曲、纯音乐、BGM 和视频配乐，再集中调整最关键的问题。",
+  "description_en": "Turn a theme, lyric, scene, or reference audio into reviewable songs, instrumentals, BGM, and soundtracks with a clear creative direction and focused revisions.",
+  "iconSource": "letter:auto",
+  "installedContentHash": "sha256:14d703184c30a30e97b3371e88dfd6cac9a92b2ec3ed9de4fd02b4370cb1c1ad"
+}

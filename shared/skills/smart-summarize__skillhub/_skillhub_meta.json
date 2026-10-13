@@ -1,0 +1,19 @@
+{
+  "slug": "smart-summarize",
+  "name": "Summarize",
+  "version": "1.0.0",
+  "installedAt": 1789820900071,
+  "source": "skillhub",
+  "namespace": "clawhub_quincygunter",
+  "canonicalName": "@clawhub_quincygunter/smart-summarize",
+  "iconSource": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/7920727c-4e7d-496a-9223-d9c6673e9e53.png",
+  "labels": {
+    "requires_api_key": "true"
+  },
+  "description_zh": "使用 summarize CLI 总结网址或文件（网页、PDF、图片、音频、YouTube），并提供 50+ 图像生成、视频生成、语音合成模型。",
+  "description_en": "Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube). And also 50+ models for image generation, video generation, text-to-speec...",
+  "installs": 5755,
+  "iconLocalPath": "C:/Users/win/.workbuddy/skills/smart-summarize__skillhub/_icon.png",
+  "iconDownloadedFrom": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/7920727c-4e7d-496a-9223-d9c6673e9e53.png",
+  "installedContentHash": "sha256:6ba5487dbfc4385238336098d1d7e89ed4dc3903790e9eceef2af4adab9c3483"
+}

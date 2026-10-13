@@ -1,0 +1,13 @@
+{
+  "name": "Excel 表格处理",
+  "installedAt": 1789134393632,
+  "source": "marketplace",
+  "version": "1.0.0",
+  "skillId": "skill_2096528888507297792",
+  "description_zh": "创建、编辑、分析 Excel 表格：公式、图表、透视表与格式设置。",
+  "description_en": "Creates, edits, and analyzes Excel files: formulas, charts, pivot tables, formatting.",
+  "iconSource": "https://openplatform-cdn.codebuddy.cn/public/common/capability_cover/2a4cd129-9ecf-4971-996e-bc618cbd7921/d5df0eb0-090f-4e77-aace-3fafac048e5a.png",
+  "iconLocalPath": "C:/Users/win/.workbuddy/skills/xlsx/_icon.png",
+  "iconDownloadedFrom": "https://openplatform-cdn.codebuddy.cn/public/common/capability_cover/2a4cd129-9ecf-4971-996e-bc618cbd7921/d5df0eb0-090f-4e77-aace-3fafac048e5a.png",
+  "installedContentHash": "sha256:cc8c0a50a4a47c330df54262b9bb8d0757fdf1df8fd3bbd8a5d615261453fc54"
+}

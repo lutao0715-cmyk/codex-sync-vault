@@ -1,0 +1,19 @@
+{
+  "slug": "computer-use-windows",
+  "name": "Computer Use Windows",
+  "version": "0.1.1",
+  "installedAt": 1789821015767,
+  "source": "skillhub",
+  "namespace": "clawhub_wimi321",
+  "canonicalName": "@clawhub_wimi321/computer-use-windows",
+  "iconSource": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/60484da4-21ca-4044-b2ff-2b3a1ddcd63f.png",
+  "labels": {
+    "requires_api_key": "false"
+  },
+  "description_zh": "顶级 Windows 电脑使用技能，集成独立运行时，自主启动，无需本地 Claude安装，私有原生模块，...",
+  "description_en": "Top-level Windows computer-use skill with a bundled standalone runtime that bootstraps itself without any local Claude installation, private native modules,...",
+  "installs": 4198,
+  "iconLocalPath": "C:/Users/win/.workbuddy/skills/computer-use-windows__skillhub/_icon.png",
+  "iconDownloadedFrom": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/60484da4-21ca-4044-b2ff-2b3a1ddcd63f.png",
+  "installedContentHash": "sha256:fb6389dad72ba8c70f8661d7bbefcf3a351bbf268cf627d941f4dc1c7ecce546"
+}

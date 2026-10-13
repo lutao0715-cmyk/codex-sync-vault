@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "skills": {
+    "find-skills": {
+      "id": "find-skills",
+      "type": "skill",
+      "lastUsedDate": "2026-09-27",
+      "recentDates": [
+        "2026-09-27",
+        "2026-09-23"
+      ],
+      "firstSeenDate": "2026-09-23"
+    },
+    "video-generation": {
+      "id": "video-generation",
+      "type": "skill",
+      "lastUsedDate": "2026-09-23",
+      "recentDates": [
+        "2026-09-23"
+      ],
+      "firstSeenDate": "2026-09-23"
+    },
+    "jianying-all": {
+      "id": "jianying-all",
+      "type": "skill",
+      "lastUsedDate": "2026-09-28",
+      "recentDates": [
+        "2026-09-28",
+        "2026-09-27",
+        "2026-09-23"
+      ],
+      "firstSeenDate": "2026-09-23"
+    },
+    "jianying-dfq": {
+      "id": "jianying-dfq",
+      "type": "skill",
+      "lastUsedDate": "2026-09-23",
+      "recentDates": [
+        "2026-09-23"
+      ],
+      "firstSeenDate": "2026-09-23"
+    },
+    "咪咕礼物": {
+      "id": "咪咕礼物",
+      "type": "skill",
+      "lastUsedDate": "2026-09-23",
+      "recentDates": [
+        "2026-09-23"
+      ],
+      "firstSeenDate": "2026-09-23"
+    },
+    "expert-manager": {
+      "id": "expert-manager",
+      "type": "skill",
+      "lastUsedDate": "2026-09-28",
+      "recentDates": [
+        "2026-09-28",
+        "2026-09-25"
+      ],
+      "firstSeenDate": "2026-09-25"
+    },
+    "video-downloader": {
+      "id": "video-downloader",
+      "type": "skill",
+      "lastUsedDate": "2026-09-27",
+      "recentDates": [
+        "2026-09-27"
+      ],
+      "firstSeenDate": "2026-09-27"
+    },
+    "agent-browser": {
+      "id": "agent-browser",
+      "type": "skill",
+      "lastUsedDate": "2026-09-27",
+      "recentDates": [
+        "2026-09-27"
+      ],
+      "firstSeenDate": "2026-09-27"
+    },
+    "video-transcribe": {
+      "id": "video-transcribe",
+      "type": "skill",
+      "lastUsedDate": "2026-09-27",
+      "recentDates": [
+        "2026-09-27"
+      ],
+      "firstSeenDate": "2026-09-27"
+    },
+    "summarize": {
+      "id": "summarize",
+      "type": "skill",
+      "lastUsedDate": "2026-09-27",
+      "recentDates": [
+        "2026-09-27"
+      ],
+      "firstSeenDate": "2026-09-27"
+    },
+    "beatra": {
+      "id": "beatra",
+      "type": "skill",
+      "lastUsedDate": "2026-09-27",
+      "recentDates": [
+        "2026-09-27"
+      ],
+      "firstSeenDate": "2026-09-27"
+    },
+    "同步": {
+      "id": "同步",
+      "type": "skill",
+      "lastUsedDate": "2026-10-11",
+      "recentDates": [
+        "2026-10-11",
+        "2026-09-30",
+        "2026-09-28"
+      ],
+      "firstSeenDate": "2026-09-28"
+    },
+    "jianying-ai-editor": {
+      "id": "jianying-ai-editor",
+      "type": "skill",
+      "lastUsedDate": "2026-09-28",
+      "recentDates": [
+        "2026-09-28"
+      ],
+      "firstSeenDate": "2026-09-28"
+    },
+    "outdoor-ski-daily-report": {
+      "id": "outdoor-ski-daily-report",
+      "type": "skill",
+      "lastUsedDate": "2026-10-11",
+      "recentDates": [
+        "2026-10-11"
+      ],
+      "firstSeenDate": "2026-10-11"
+    },
+    "codex-net": {
+      "id": "codex-net",
+      "type": "skill",
+      "lastUsedDate": "2026-10-12",
+      "recentDates": [
+        "2026-10-12"
+      ],
+      "firstSeenDate": "2026-10-12"
+    },
+    "lark-doc": {
+      "id": "lark-doc",
+      "type": "skill",
+      "lastUsedDate": "2026-10-12",
+      "recentDates": [
+        "2026-10-12"
+      ],
+      "firstSeenDate": "2026-10-12"
+    },
+    "feishu-doc-restricted-copy": {
+      "id": "feishu-doc-restricted-copy",
+      "type": "skill",
+      "lastUsedDate": "2026-10-12",
+      "recentDates": [
+        "2026-10-12"
+      ],
+      "firstSeenDate": "2026-10-12"
+    }
+  },
+  "mcps": {
+    "miora": {
+      "id": "miora",
+      "type": "mcp",
+      "lastUsedDate": "2026-09-23",
+      "recentDates": [
+        "2026-09-23"
+      ],
+      "firstSeenDate": "2026-09-23"
+    },
+    "ardot": {
+      "id": "ardot",
+      "type": "mcp",
+      "lastUsedDate": "2026-09-23",
+      "recentDates": [
+        "2026-09-23"
+      ],
+      "firstSeenDate": "2026-09-23"
+    }
+  },
+  "activeDays": [
+    "2026-10-12",
+    "2026-10-11",
+    "2026-09-30",
+    "2026-09-28",
+    "2026-09-27",
+    "2026-09-25",
+    "2026-09-23"
+  ],
+  "dismissedIdle": {},
+  "globalDismissed": true,
+  "globalDismissedVersion": 2
+}
