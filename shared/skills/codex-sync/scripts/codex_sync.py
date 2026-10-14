@@ -114,6 +114,13 @@ def backup(path: Path) -> Path:
     return backup_path
 
 
+def backup_dir(path: Path) -> Path:
+    stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
+    backup_path = path.with_name(f"{path.name}.codex-sync-backup-{stamp}")
+    shutil.copytree(path, backup_path)
+    return backup_path
+
+
 def machine_id() -> str:
     raw = f"{socket.gethostname()}-{platform.system()}-{platform.machine()}".lower()
     return "".join(ch if ch.isalnum() or ch in ".-" else "-" for ch in raw).strip("-")
@@ -173,10 +180,13 @@ def write_plugin_manifest(vault: Path) -> None:
     manifest.write_text("\n".join(entries) + ("\n" if entries else ""), encoding="utf-8")
 
 
-def import_from_vault(vault: Path) -> None:
+def import_from_vault(vault: Path, mirror_skills: bool = False) -> None:
     shared = vault / "shared"
     home = codex_home()
-    rsync(shared / "skills", home / "skills")
+    if mirror_skills and (home / "skills").exists():
+        saved = backup_dir(home / "skills")
+        print(f"Backed up local skills to {saved}")
+    rsync(shared / "skills", home / "skills", delete=mirror_skills)
 
     remote_agents = shared / "AGENTS.md"
     local_agents = home / "AGENTS.md"
@@ -308,6 +318,17 @@ def cmd_pull(args: argparse.Namespace) -> None:
     print("Pulled portable Codex content into this machine.")
 
 
+def cmd_pull_mirror(args: argparse.Namespace) -> None:
+    remote = remote_url(args.remote)
+    if remote:
+        save_remote(remote)
+    vault = ensure_vault(remote)
+    configure_git_identity(vault)
+    git_pull(vault)
+    import_from_vault(vault, mirror_skills=True)
+    print("Pulled and mirrored portable Codex skills into this machine.")
+
+
 def cmd_push(args: argparse.Namespace) -> None:
     remote = remote_url(args.remote)
     if remote:
@@ -344,7 +365,7 @@ def cmd_sync(args: argparse.Namespace) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["init", "sync", "push", "pull", "status"], nargs="?", default="sync")
+    parser.add_argument("command", choices=["init", "sync", "push", "pull", "pull-mirror", "status"], nargs="?", default="sync")
     parser.add_argument("--remote", help="Git remote URL for the private sync vault.")
     args = parser.parse_args()
     try:
@@ -353,6 +374,7 @@ def main() -> int:
             "sync": cmd_sync,
             "push": cmd_push,
             "pull": cmd_pull,
+            "pull-mirror": cmd_pull_mirror,
             "status": cmd_status,
         }[args.command](args)
         return 0
