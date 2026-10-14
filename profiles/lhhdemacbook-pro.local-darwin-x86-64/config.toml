@@ -2,7 +2,7 @@ model = "gpt-5.5"
 model_reasoning_effort = "low"
 [desktop]
 followUpQueueMode = "steer"
-conversationDetailMode = "STEPS_COMMANDS"
+conversationDetailMode = "STEPS_PROSE"
 
 [marketplaces.openai-bundled]
 source_type = "local"

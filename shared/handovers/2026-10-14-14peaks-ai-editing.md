@@ -124,3 +124,30 @@ codex-sync 默认同步：
 
 会话原始聊天不会自动同步，所以本文件作为今天的人工交接摘要。
 
+
+## 追加结论：ChatCut 能力边界
+
+今日继续确认：ChatCut 不是完全盲，但也不能当成“能像剪辑师一样读懂纪录片镜头语言”的工具。
+
+ChatCut 更适合：
+
+- 基于转写剪口播：采访、播客、口播、课程
+- 自动字幕：短视频、口播类内容
+- 清理停顿/废话：A-roll 粗剪
+- 生成 B-roll / 图片 / MG：包装口播
+- 竖屏重构：talking head、播客切条
+- 按文字改时间线：删除一句话就剪掉对应片段
+
+ChatCut 不稳定的任务：
+
+- 根据中文解说自动找英文纪录片对应画面
+- 判断哪个 K2 镜头最有压迫感
+- 区分远景、反应、动作、情绪镜头并按镜头语言排序
+- 把 90 分钟纪录片理解成 10 分钟高级解说片
+
+结论：ChatCut 可以作为“口播包装/字幕/MG/短视频切条工具”，但不作为长纪录片二创的主剪辑判断工具。长纪录片二创仍按“脚本 → 粗索引 → 重点段落关键帧 → 镜头级 shot list → ChatCut/DaVinci 执行”的流程。
+
+已同步写入：
+
+- `/Users/lutao/.codex/skills/outdoor-creation-team/SKILL.md`
+- `/Users/lutao/.codex/skills/outdoor-creation-team/references/agents/editing-director.md`
