@@ -13,7 +13,7 @@
   "description_zh": "在 HyperFrames HTML 中创建视频合成、动画、标题卡、覆盖层、字幕、配音、音频可视化以及场景转场。",
   "description_en": "Create video compositions, animations, title cards, overlays, captions, voiceovers, audio-reactive visuals, and scene transitions in HyperFrames HTML. Use wh...",
   "installs": 12584,
-  "iconLocalPath": "C:/Users/win/.workbuddy/skills/hyperframes__skillhub/_icon.png",
+  "iconLocalPath": "/Users/lutao/.workbuddy/skills/hyperframes__skillhub/_icon.png",
   "iconDownloadedFrom": "https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/a78375f1-773e-4817-b4f3-0557b6afd777.png",
   "installedContentHash": "sha256:84e8bacfa0bd040b8908d07a55c8ae9e315e0e50ec1ca1f6dbe3ed9369b91716"
 }

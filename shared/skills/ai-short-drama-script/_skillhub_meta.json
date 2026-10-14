@@ -5,7 +5,7 @@
   "version": "2.0.1",
   "skillId": "skill_2096549709023965184",
   "iconSource": "https://openplatform-cdn.codebuddy.cn/public/common/capability_cover/ac3a66c3-1445-49e5-9585-f1976110f96e/0c035562-3ebf-4124-8f51-d442c424c0b0.jpg",
-  "iconLocalPath": "C:/Users/win/.workbuddy/skills/ai-short-drama-script/_icon.jpg",
+  "iconLocalPath": "/Users/lutao/.workbuddy/skills/ai-short-drama-script/_icon.jpg",
   "iconDownloadedFrom": "https://openplatform-cdn.codebuddy.cn/public/common/capability_cover/ac3a66c3-1445-49e5-9585-f1976110f96e/0c035562-3ebf-4124-8f51-d442c424c0b0.jpg",
   "installedContentHash": "sha256:59f9e010a65335ffaff34223a9423504364b378bf08f204921aac0bca5346529"
 }

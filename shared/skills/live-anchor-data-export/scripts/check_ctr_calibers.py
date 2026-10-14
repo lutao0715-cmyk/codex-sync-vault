@@ -3,9 +3,9 @@
 import openpyxl, statistics
 from collections import defaultdict
 
-A = 'C:/Users/win/Downloads/二台跨天 2.xlsx'          # 大表：直播全口径
-E = 'C:/Users/win/Downloads/重点主播的开播&转化数据(1).xlsx'  # 曝光侧：推荐场景
-B = 'C:/Users/win/Downloads/报名成功主播_累计数据_0914v2.xlsx'  # 名单：33人
+A = '/Users/lutao/Downloads/二台跨天 2.xlsx'          # 大表：直播全口径
+E = '/Users/lutao/Downloads/重点主播的开播&转化数据(1).xlsx'  # 曝光侧：推荐场景
+B = '/Users/lutao/Downloads/报名成功主播_累计数据_0914v2.xlsx'  # 名单：33人
 
 def num(v):
     if v is None: return 0.0

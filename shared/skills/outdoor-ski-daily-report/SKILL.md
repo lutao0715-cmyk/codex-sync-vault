@@ -5,12 +5,12 @@ description: 生成并校验「滑雪晨报」与「户外运动每日外刊」�
 
 # 滑雪晨报 / 户外日报 生成与查重
 
-工作目录：`C:/Users/win/WorkBuddy/2026-08-10-16-06-16/`
+工作目录：`/Users/lutao/WorkBuddy/2026-08-10-16-06-16/`
 
 ## 0. 先确认状态（别急着写内容）
 
 ```bash
-cd C:/Users/win/WorkBuddy/2026-08-10-16-06-16
+cd /Users/lutao/WorkBuddy/2026-08-10-16-06-16
 grep -o '2026年9月[0-9]*日[^<]*' ski-morning-daily.html | head -2
 grep -o '2026年9月[0-9]*日[^<]*' outdoor-adventure-daily.html | head -2
 ```
@@ -38,6 +38,8 @@ SPORT_GROUPS / GROUP_TARGET = {"hike":8,"run":6,"ride":6,"ski":5,"water":4,"air"
 运行 `gen_outdoor.py` 会打印「受众加权配比报告」，**偏离超 1 条的组数必须为 0**，否则换题重生成。
 
 > **国内选题常年超额，必须先列候选再排序取舍**（2026-09-24 实测：单期候选 8 条，配额只有 3 条）。取舍口径：优先有国际参与度或明确公共价值的（国际公开赛、国字号赛事、执法/政策通报），纯地方性活动一律让位。
+>
+> ⚠️ **「在中国境内举办的国际赛事」也计入国内配额**（2026-10-02 踩坑：上海场地世锦赛、成都赛艇公开赛都被计入，加上亚运攀岩双金共 4 条超标）。判定后再数一遍，超了就换掉价值最低的那条，换成同 tag 的国际选题以保住配比不变。
 
 ## 2. 生成流程（严禁手写整份 HTML，历史上多次被截断）
 
@@ -94,18 +96,26 @@ open("gen_ski.py", "w", encoding="utf-8").write(src)
 
 ### 户外日报
 
-卡片数据外置到 `/tmp/cards_sepN.py`（字典 `CARDS = {"hot":[("#1", 标题, 来源, 标签class, 标签文案, 正文, 链接), ...]}`），再拼装：
+卡片数据外置到项目根目录 `cards_MMDD_data.py`（字典 `CARDS = {"hot":[("#1", 标题, 来源, 标签class, 标签文案, 正文, 链接), ...]}`），再用**补丁脚本** `apply_MMDD.py` 注入生成器：
 
 ```bash
-cp gen_outdoor.py gen_outdoor.py.bakMMDD
-sed -n '/^# ============ 受众加权配置/,$p' gen_outdoor.py | sed 's/9月X日/9月Y日/g' > /tmp/tail_sepN.py
-cat /tmp/cards_sepN.py /tmp/tail_sepN.py > gen_outdoor.py
-python3 gen_outdoor.py        # 必须看到"偏离超1条的组数 = 0"
+cp gen_outdoor.py gen_outdoor.py.bakMMDD     # 备份
+# 写 cards_MMDD_data.py（37 条 7 元组）
+# 写 apply_MMDD.py —— 基于上一期 apply 脚本模板，需含：
+#   ① 4 类日期替换：X月N日→X月N+1日 / X月N→X月N+1 / YYYY年X月N日→YYYY年X月N+1日 / YYYY-MM-DD→次日
+#   ② sources 行：re.sub(r'数据来源：[^<]*', '数据来源：...', src)
+#   ③ from cards_MMDD_data import CARDS as NEW_CARDS
+#   ④ 以括号配平定位旧 CARDS 块（含其上方注释行）后整块替换
+#   ⑤ 写回 + compile(src, "gen_outdoor.py", "exec") 自检
+python3 apply_MMDD.py                         # 必须看到 "Compile OK"
+python3 gen_outdoor.py                        # 必须看到 "偏离超1条的组数 = 0"
 ```
+
+> ⚠️ **不要**再用老的 `sed | cat` 拼接法（`/tmp/cards_sepN.py` + `tail_sepN.py`）——日期替换靠 `sed 's/9月X日/9月Y日/g'` 在跨月时会失效，且无法做 compile 自检。补丁脚本法可自检、可回退。
 
 > **配比解法（先解约束、再写内容）**：① 固定版块配额；② 先安排"天然归属"明确的条目（行业 5 条必属 multi，安全类事件自带 water/fish 属性）；③ 用余量表倒推还缺哪些运动组，把缺口当选题指令去搜；④ 按缺口定向搜索补齐。这样一次成型，不返工。
 >
-> **tag_text 必须命中 SPORT_GROUPS 的键（2026-09-24 实测踩坑）**：卡片第 5 个字段（标签文案）会被拿去查 `SPORT_GROUPS` 归组算配比。**水上运动只有「自由潜/潜水/冲浪/帆船/皮划艇/游泳/桨板」七个键，没有通用的「水上」**；综合类必须写「户外装备/行业/目的地」。**标了不存在的键会静默不计入任何组**——配比报告看着正常，实际少算一条，排查成本极高。写 tag_text 前先回读 `gen_outdoor.py` 顶部的 `SPORT_GROUPS`。已实测替代：救生/铁人一类写「游泳」。
+> **tag_text 必须命中 SPORT_GROUPS 的键（2026-09-24 实测踩坑）**：卡片第 5 个字段（标签文案）会被拿去查 `SPORT_GROUPS` 归组算配比。**水上运动只有「自由潜/潜水/冲浪/帆船/皮划艇/游泳/桨板」七个键，没有通用的「水上」**；综合类必须写「户外装备/行业/目的地」；骑行类含「骑行/公路车/山地车/砾石/自行车/场地车」。**标了不存在的键会静默不计入任何组**——配比报告看着正常，实际少算一条，排查成本极高。写 tag_text 前先回读 `gen_outdoor.py` 顶部的 `SPORT_GROUPS`。已实测替代：救生/铁人一类写「游泳」；场地车/追逐赛写「自行车」（2026-10-02 曾因「场地车」未登记导致 multi 虚高 2 条，已把该键补进 SPORT_GROUPS）。
 >
 > 页面日期与来源在模板尾部（`<title>`、`<p class="sub">`、`<footer>` 的「数据来源：」行），拼接尾部时用 `sed` 一并替换；若原模板首个 `<p>` 未闭合，顺手补 `</p>`。
 
@@ -113,7 +123,7 @@ python3 gen_outdoor.py        # 必须看到"偏离超1条的组数 = 0"
 
 ```bash
 python3 scripts/verify_dedup.py ski --n 5        # 滑雪：基线上溯 5 期
-python3 scripts/verify_dedup.py outdoor --n 3    # 户外：基线上溯 3 期
+python3 scripts/verify_dedup.py outdoor --n 5    # 户外：基线上溯 5 期
 ```
 
 脚本自动完成：结构校验（条数/版块/标签/编号连续性/日期）+ 跨期 6 字 shingle 查重（过白名单）+ 同期内部查重。
@@ -174,4 +184,4 @@ grep -o 'class="section-title"' outdoor-adventure-daily.html | wc -l    # 7
 
 ## 6. 环境
 
-Python：`C:/Users/win/.workbuddy/binaries/python/versions/3.13.12/bin/python3`（不用系统 python3）
+Python：`/Users/lutao/.codex/workbuddy-runtime/binaries/python/versions/3.13.12/bin/python3`（不用系统 python3）

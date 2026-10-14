@@ -1,0 +1,33 @@
+{
+  "_note": "脚本数据 JSON 结构。build_script.py 和 export_voiceover.py 共用这一份。",
+  "title": "脚本标题（会写成 xlsx 第1行）",
+  "subtitle": "生产约束（第2行），如：时长约45秒 | 花字 #1E6BD6 | 字幕口播同步",
+  "brand_color": "#1E6BD6",
+  "brand_color_light": "#D9E7F7",
+  "headers": ["序号", "段落", "时间码", "画面描述", "口播文案", "花字/字幕", "备注", "时长(秒)"],
+  "keys": ["no", "section", "time_code", "visual", "narration", "subtitle", "notes", "duration"],
+  "col_widths": [6, 12, 14, 34, 52, 26, 22, 10],
+  "shots": [
+    {
+      "no": 1,
+      "section": "钩子",
+      "time_code": "00:00-00:06",
+      "visual": "画面描述（写清楚镜头内容、景别、动作）",
+      "narration": "口播文案。这段的字数会被自动校验（4.9 字/秒）",
+      "subtitle": "花字内容（只放数字和结论）",
+      "notes": "备注：这一镜为什么存在",
+      "duration": 6
+    }
+  ],
+  "notes": [
+    "1. 注意事项逐条列，会写进表底【注意事项】区",
+    "2. 品牌合作须标注「广而告之」/「品牌合作」"
+  ],
+  "_variants": {
+    "5列简版": {
+      "headers": ["镜号", "阶段", "时长(秒)", "画面·分镜", "口播文案"],
+      "keys": ["no", "section", "duration", "visual", "narration"],
+      "col_widths": [6, 12, 10, 46, 60]
+    }
+  }
+}

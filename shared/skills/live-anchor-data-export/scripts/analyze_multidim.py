@@ -14,9 +14,9 @@ from openpyxl.chart import ScatterChart, Reference, Series
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
-BIG = "C:/Users/win/Downloads/二台跨天 2.xlsx"
+BIG = "/Users/lutao/Downloads/二台跨天 2.xlsx"
 BASE = "/tmp/baoming_clean.csv"              # 飞书「报名成功主播明细」A=咪咕账号ID B=昵称
-OUT = "C:/Users/win/Downloads/报名成功主播_多维分析_0914.xlsx"
+OUT = "/Users/lutao/Downloads/报名成功主播_多维分析_0914.xlsx"
 MIN_DAYS = 7
 
 KW = {
@@ -77,7 +77,7 @@ print(f"大表: {sum(len(v) for v in creator_rows.values()):,} 行, 创作者 {l
 
 # 名单来源：报名成功主播_累计数据_0914v2.xlsx 的「名单ID」列（= 主播/创作者ID）
 from openpyxl import load_workbook as _lw
-_r = _lw("C:/Users/win/Downloads/报名成功主播_累计数据_0914v2.xlsx", data_only=True, read_only=True).active
+_r = _lw("/Users/lutao/Downloads/报名成功主播_累计数据_0914v2.xlsx", data_only=True, read_only=True).active
 want_ids = {}
 for row in _r.iter_rows(min_row=2, values_only=True):
     if row and row[0]:

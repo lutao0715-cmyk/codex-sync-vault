@@ -17,7 +17,7 @@
   "description_zh": "飞书/Lark 全能套件：消息、文档、表格、多维表格、日历、邮件、任务、Wiki、幻灯片、会议、OKR、审批等 18 个业务域",
   "description_en": "Lark/Feishu unified CLI: messaging, docs, sheets, base, calendar, mail, tasks, wiki, slides & more",
   "iconSource": "https://openplatform-cdn.codebuddy.cn/public/skills/icons/lark-unified.svg",
-  "iconLocalPath": "C:/Users/win/.workbuddy/skills/lark-unified/_icon.svg",
+  "iconLocalPath": "/Users/lutao/.workbuddy/skills/lark-unified/_icon.svg",
   "iconDownloadedFrom": "https://openplatform-cdn.codebuddy.cn/public/skills/icons/lark-unified.svg",
   "installedContentHash": "sha256:1e4e15502e7eaadcb2f5a588cc23bb4b31456031deae041eed2ad186bc49a6aa"
 }

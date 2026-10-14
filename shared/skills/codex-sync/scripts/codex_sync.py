@@ -17,6 +17,15 @@ from pathlib import Path
 DEFAULT_REMOTE = "git@github.com:lutao0715-cmyk/codex-sync-vault.git"
 EXCLUDE_SKILL_DIRS = {".system"}
 
+# Skills tied to this Mac's OS, hardware, or local UI automation stack should
+# stay local. They are useful on the Mac, but pushing them into the shared vault
+# makes Windows load irrelevant or actively misleading instructions.
+EXCLUDE_SHARED_SKILLS = {
+    "mac-disk-cleanup-audit",
+    "macos-app-arch-fix",
+    "peekaboo",
+}
+
 
 def run(cmd: list[str], cwd: Path | None = None, check: bool = True) -> subprocess.CompletedProcess[str]:
     proc = subprocess.run(cmd, cwd=cwd, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -196,15 +205,23 @@ def export_to_vault(vault: Path) -> None:
     skills_src = home / "skills"
     skills_dst = shared / "skills"
     skills_dst.mkdir(parents=True, exist_ok=True)
+    allowed_skill_names: set[str] = set()
     if skills_src.exists():
         for child in skills_src.iterdir():
-            if child.name in EXCLUDE_SKILL_DIRS or child.name.startswith("."):
+            if child.name in EXCLUDE_SKILL_DIRS or child.name in EXCLUDE_SHARED_SKILLS or child.name.startswith("."):
                 continue
+            allowed_skill_names.add(child.name)
             target = skills_dst / child.name
             if child.is_dir():
-                rsync(child, target)
+                rsync(child, target, delete=True)
             elif child.is_file():
                 shutil.copy2(child, target)
+    for child in skills_dst.iterdir():
+        if child.name not in allowed_skill_names:
+            if child.is_dir():
+                shutil.rmtree(child)
+            else:
+                child.unlink()
 
     agents = home / "AGENTS.md"
     if agents.exists():

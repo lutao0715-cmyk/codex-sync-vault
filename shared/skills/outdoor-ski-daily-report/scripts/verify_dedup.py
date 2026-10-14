@@ -20,6 +20,12 @@
 import re, ast, sys, pathlib, itertools, argparse
 
 WD = pathlib.Path(__file__).resolve().parent
+# 技能目录下的副本(scripts/)会被直接调用,此时 __file__ 指向 skills/.../scripts/,
+# 里面没有生成器与补丁。若当前工作目录看起来才是真正的项目根,就切过去。
+if not (WD / "gen_ski.py").exists() and not (WD / "gen_outdoor.py").exists():
+    _cand = pathlib.Path.cwd()
+    if (_cand / "gen_ski.py").exists() or (_cand / "gen_outdoor.py").exists():
+        WD = _cand
 
 # ---------------------------------------------------------------- 解析工具
 
@@ -127,7 +133,17 @@ def current_mmdd(kind):
     """从当前生成器里读出"今天"，用来把今天的补丁从基线里剔除。
     否则会出现'拿今天当昨天'的假重复（历史上踩过两次）。"""
     f = "gen_ski.py" if kind == "ski" else "gen_outdoor.py"
-    s = (WD / f).read_text(encoding="utf-8")[:4000]
+    s = (WD / f).read_text(encoding="utf-8")
+    if kind == "outdoor":
+        # 户外：日期写在 CARDS 上方那行注释里（# ... （YYYY-MM-DD））。历史上这行注释
+        # 被重复写过多次，用 [:4000] 截断会读到旧注释行，于是 current_mmdd 返回上一期，
+        # 当天的 cards_MMDD_data.py 被当成基线（= 拿今天当昨天，2026-09-30 踩到）。
+        # 取 CARDS = { 之前最后一个日期即为当期。
+        head = s[: s.index("CARDS = {")] if "CARDS = {" in s else s
+        ms = re.findall(r"(\d{4})-(\d{1,2})-(\d{1,2})", head)
+        if ms:
+            _, mo, dy = ms[-1]
+            return f"{int(mo):02d}{int(dy):02d}"
     m = re.search(r"DATE\s*=\s*['\"](\d{4})年(\d{1,2})月(\d{1,2})日", s)
     if m:
         return f"{int(m.group(2)):02d}{int(m.group(3)):02d}"
@@ -145,12 +161,24 @@ def find_baselines(kind, n):
     # 数据写到 /tmp/cards_sepN.py，项目内没有 outdoor 补丁，所以 outdoor 只能用
     # gen_outdoor.py.bakMMDD 做基线。
     if kind == "ski":
-        pat = re.compile(r"patch_(\d{4})[a-z]?\.py$")
+        # 注意 [a-z]* 而非 [a-z]?：历史上出现过 patch_0928ski.py / patch_0929ski.py
+        # 这类多字母后缀命名，用 ? 会漏掉整期基线（2026-09-30 修）。
+        pat = re.compile(r"patch_(\d{4})[a-z]*\.py$")
         for p in WD.glob("patch_*.py"):
             m = pat.search(p.name)
             if m and m.group(1).isdigit():
                 d = m.group(1)
                 # 同一天多份补丁，取文件名最大的那份（即当天最终定稿）
+                if d not in patch_map or p.name > patch_map[d].name:
+                    patch_map[d] = p
+    else:
+        # 户外日报的卡片数据存在 cards_MMDD_data.py（CARDS 字典），
+        # 单独靠 gen_outdoor.py.bakMMDD 会缺期（如 9/29 没留 bak）。2026-09-30 补。
+        cpat = re.compile(r"cards_(\d{4})_data\.py$")
+        for p in WD.glob("cards_*_data.py"):
+            m = cpat.search(p.name)
+            if m and m.group(1).isdigit():
+                d = m.group(1)
                 if d not in patch_map or p.name > patch_map[d].name:
                     patch_map[d] = p
     for p in WD.glob(f"gen_{kind}.py.bak*"):
@@ -219,7 +247,7 @@ def main():
         tags = re.findall(r'class="tag tag-([a-z]+)"', h)
         from collections import Counter
         print("标签分布:", dict(Counter(tags)))
-    print("日期 =", re.findall(r"2026年9月\d+日[^<\n]{0,10}", h)[:2])
+    print("日期 =", re.findall(r"2026年\d{1,2}月\d{1,2}日", h)[:3])
 
 
 if __name__ == "__main__":

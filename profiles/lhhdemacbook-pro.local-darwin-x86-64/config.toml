@@ -74,6 +74,21 @@ trust_level = "trusted"
 [projects."/Users/lutao/Documents/Codex/2026-10-13/new-chat-4"]
 trust_level = "trusted"
 
+[projects."/Users/lutao/Documents/Codex/2026-10-13/gei-w"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-13/bang"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-13/wo-2"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-13/github-cli-gh-codex-pull-request"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-14/zuo"]
+trust_level = "trusted"
+
 [plugins."codex-app-tools@openai-bundled"]
 enabled = true
 

@@ -10,10 +10,10 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
-A = 'C:/Users/win/Downloads/二台跨天 2.xlsx'
-E = 'C:/Users/win/Downloads/重点主播的开播&转化数据(1).xlsx'
-B = 'C:/Users/win/Downloads/报名成功主播_累计数据_0914v2.xlsx'
-OUT = 'C:/Users/win/Downloads/报名成功主播_三表联合评估_0914.xlsx'
+A = '/Users/lutao/Downloads/二台跨天 2.xlsx'
+E = '/Users/lutao/Downloads/重点主播的开播&转化数据(1).xlsx'
+B = '/Users/lutao/Downloads/报名成功主播_累计数据_0914v2.xlsx'
+OUT = '/Users/lutao/Downloads/报名成功主播_三表联合评估_0914.xlsx'
 
 def num(v):
     if v is None: return 0.0

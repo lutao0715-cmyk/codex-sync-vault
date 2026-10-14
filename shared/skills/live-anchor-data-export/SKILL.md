@@ -21,7 +21,7 @@ description: 直播间主播数据导出（15列版）+ 用飞书名单按主播
 ```bash
 python3 ~/.workbuddy/skills/live-anchor-data-export/scripts/export_14col.py \
   "<大表明细.xlsx>" "<基准名单.csv|xlsx>" \
-  -o "C:/Users/win/Downloads/主播累计数据_MMdd.xlsx"
+  -o "/Users/lutao/Downloads/主播累计数据_MMdd.xlsx"
 ```
 
 脚本自动完成：
@@ -66,7 +66,7 @@ roster 口径 10 天，涛哥认为少算 → 实为大表里他有 15 行明细
 ```bash
 python3 ~/.workbuddy/skills/live-anchor-data-export/scripts/export_14col.py \
   "<大表.xlsx>" --from 20260719 --to 20260819 \
-  -o "C:/Users/win/Downloads/主播累计数据_0719-0819.xlsx"
+  -o "/Users/lutao/Downloads/主播累计数据_0719-0819.xlsx"
 ```
 
 - `base` 位置参数已改为**可选**：不传 = 不限名单，大表（过滤后）全部创作者参与统计，场次=其直播ID去重
@@ -260,7 +260,7 @@ def to_int_date(v):            # 兼容 datetime/date/20260820/"2026/08/20"/"202
 
 ## 交付习惯
 
-- 输出到 `C:/Users/win/Downloads/主播累计数据_MMdd.xlsx`（或活动名_主播累计数据.xlsx），带蓝色表头 + 边框 + 居中
+- 输出到 `/Users/lutao/Downloads/主播累计数据_MMdd.xlsx`（或活动名_主播累计数据.xlsx），带蓝色表头 + 边框 + 居中
 - 交付回复含：主播数/场次数/命中缺失数、合计行、Top 表（Markdown）、命中说明
 - 涛哥偏好 Markdown 表格呈现汇总，纯数字不要括号日期
 - 完成后：本 skill 无需改动；若踩了新坑/列模板有变 → 同步更新本文件 + scripts/export_14col.py + 当日 memory

@@ -17,7 +17,7 @@
   "description_zh": "PowerPoint 演示文稿生成",
   "description_en": "Generate and edit PowerPoint presentations",
   "iconSource": "https://openplatform-cdn.codebuddy.cn/public/skills/icons/pptx-generator.svg",
-  "iconLocalPath": "C:/Users/win/.workbuddy/skills/pptx-generator/_icon.svg",
+  "iconLocalPath": "/Users/lutao/.workbuddy/skills/pptx-generator/_icon.svg",
   "iconDownloadedFrom": "https://openplatform-cdn.codebuddy.cn/public/skills/icons/pptx-generator.svg",
   "installedContentHash": "sha256:37f6a626e37d7cf9b7d301b8bec859896c0854e58dd85a0553dc98d00cd13884"
 }

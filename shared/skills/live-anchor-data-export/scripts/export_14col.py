@@ -388,7 +388,7 @@ def main():
 
     result = build_result(agg, sessions)
 
-    out = args.out or f"C:/Users/win/Downloads/主播累计数据_{datetime.now():%m%d}.xlsx"
+    out = args.out or f"/Users/lutao/Downloads/主播累计数据_{datetime.now():%m%d}.xlsx"
     write_xlsx(result, out)
 
     print(f"\n主播数: {len(result)}")

@@ -6,9 +6,9 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
-A = 'C:/Users/win/Downloads/重点主播的开播&转化数据(1).xlsx'
-B = 'C:/Users/win/Downloads/报名成功主播_累计数据_0914v2.xlsx'
-OUT = 'C:/Users/win/Downloads/重点主播复盘_分层评估_0914v3.xlsx'
+A = '/Users/lutao/Downloads/重点主播的开播&转化数据(1).xlsx'
+B = '/Users/lutao/Downloads/报名成功主播_累计数据_0914v2.xlsx'
+OUT = '/Users/lutao/Downloads/重点主播复盘_分层评估_0914v3.xlsx'
 SC = ['二台达人算法场景每日曝光', '二台达人首页feed场景每日曝光']
 SCN = {'二台达人算法场景每日曝光': '算法场景', '二台达人首页feed场景每日曝光': '首页feed'}
 MIN_DAY = 200          # 有意义曝光日门槛：单日曝光用户 <200 视为噪音日，不进日中位数/天数

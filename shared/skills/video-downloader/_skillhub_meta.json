@@ -7,7 +7,7 @@
   "description_zh": "支持抖音、小红书、B站等十多平台无水印短视频和图文下载，开箱即用",
   "description_en": "Download watermark-free videos from Douyin, Xiaohongshu, Bilibili, YouTube and more",
   "iconSource": "https://openplatform-cdn.codebuddy.cn/public/9f40ec1e-e8c9-4dca-ace6-b634b3c73991/avatar/skill/au_0aa6e342-863.svg",
-  "iconLocalPath": "C:/Users/win/.workbuddy/skills/video-downloader/_icon.svg",
+  "iconLocalPath": "/Users/lutao/.workbuddy/skills/video-downloader/_icon.svg",
   "iconDownloadedFrom": "https://openplatform-cdn.codebuddy.cn/public/9f40ec1e-e8c9-4dca-ace6-b634b3c73991/avatar/skill/au_0aa6e342-863.svg",
   "installedContentHash": "sha256:bd165e67632aa83a2b51a9bb453f76e1eaa042a959e9c0bc1f3270c7e0d11199"
 }
