@@ -12,6 +12,7 @@ Use this skill when the user wants to keep Codex configuration, custom skills, a
 Use `scripts/codex_sync.py` as the primary helper. It is intentionally conservative:
 
 - Syncs custom skills under `$CODEX_HOME/skills`.
+- Syncs only skills that have been explicitly reviewed as portable across both macOS and Windows. Single-OS or unreviewed skills must stay local until added to the allowlist in `scripts/codex_sync.py`.
 - Syncs `$CODEX_HOME/AGENTS.md` when present.
 - Extracts plugin enablement blocks from `$CODEX_HOME/config.toml` and applies only those blocks cross-machine.
 - Saves each machine's full `config.toml` as a per-host reference profile, but does not blindly apply it to other machines because paths and trusted projects are OS-specific.
@@ -52,7 +53,7 @@ The GitHub repository should be private.
 - `sync`: normal daily operation; imports remote portable content, exports local portable content, commits, and pushes.
 - `push`: export this machine's portable content and push it to the vault.
 - `pull`: pull from the vault and import portable content into this machine.
-- `pull-mirror`: pull from the vault, back up the local skills directory, then mirror `shared/skills` into this machine with deletions. Use this only when this machine should adopt the curated shared skill set exactly.
+- `pull-mirror`: pull from the vault, back up the local skills directory, then mirror `shared/skills` into this machine with deletions. Use this only when this machine should adopt the curated cross-platform skill set exactly.
 - `status`: show configured paths and Git status without changing files.
 
 When a conflict occurs during Git pull or rebase, stop and explain the vault path and conflicted files. Do not delete local Codex data to resolve conflicts.

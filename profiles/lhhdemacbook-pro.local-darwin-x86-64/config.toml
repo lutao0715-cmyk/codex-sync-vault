@@ -89,6 +89,9 @@ trust_level = "trusted"
 [projects."/Users/lutao/Documents/Codex/2026-10-14/zuo"]
 trust_level = "trusted"
 
+[projects."/Users/lutao/Documents/Codex/2026-10-14/wo"]
+trust_level = "trusted"
+
 [plugins."codex-app-tools@openai-bundled"]
 enabled = true
 

@@ -17,13 +17,22 @@ from pathlib import Path
 DEFAULT_REMOTE = "git@github.com:lutao0715-cmyk/codex-sync-vault.git"
 EXCLUDE_SKILL_DIRS = {".system"}
 
-# Skills tied to this Mac's OS, hardware, or local UI automation stack should
-# stay local. They are useful on the Mac, but pushing them into the shared vault
-# makes Windows load irrelevant or actively misleading instructions.
-EXCLUDE_SHARED_SKILLS = {
-    "mac-disk-cleanup-audit",
-    "macos-app-arch-fix",
-    "peekaboo",
+# Only skills that have been reviewed as portable across both macOS and Windows
+# belong in the shared vault. Single-OS or unreviewed skills stay local by
+# default until they are explicitly added here.
+SHARED_SKILL_ALLOWLIST = {
+    "ai-digital-avatar-script",
+    "ai-short-drama-script",
+    "codex-sync",
+    "fangan-review__skillhub",
+    "hot-topic-report",
+    "live-activity-review",
+    "lynxce-voiceover-script",
+    "outdoor-creation-team",
+    "product-manager",
+    "seedance-video-prompt",
+    "ski-video-production",
+    "unclecheng-reduce-ai-perception-v2__skillhub",
 }
 
 
@@ -96,15 +105,36 @@ def ensure_vault(remote: str | None) -> Path:
     return vault
 
 
-def rsync(src: Path, dst: Path, delete: bool = False) -> None:
+def should_skip_copy(path: Path) -> bool:
+    return path.name == "__pycache__" or path.suffix == ".pyc"
+
+
+def copy_tree(src: Path, dst: Path, delete: bool = False) -> None:
     if not src.exists():
         return
     dst.mkdir(parents=True, exist_ok=True)
-    cmd = ["rsync", "-a", "--exclude", "__pycache__/", "--exclude", "*.pyc"]
     if delete:
-        cmd.append("--delete")
-    cmd.extend([f"{src}/", f"{dst}/"])
-    run(cmd)
+        allowed = {
+            item.relative_to(src)
+            for item in src.rglob("*")
+            if not should_skip_copy(item)
+        }
+        for item in sorted(dst.rglob("*"), key=lambda p: len(p.parts), reverse=True):
+            if item.relative_to(dst) not in allowed:
+                if item.is_dir():
+                    shutil.rmtree(item)
+                else:
+                    item.unlink()
+    for item in src.rglob("*"):
+        if should_skip_copy(item):
+            continue
+        rel = item.relative_to(src)
+        target = dst / rel
+        if item.is_dir():
+            target.mkdir(parents=True, exist_ok=True)
+        elif item.is_file():
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(item, target)
 
 
 def backup(path: Path) -> Path:
@@ -186,7 +216,7 @@ def import_from_vault(vault: Path, mirror_skills: bool = False) -> None:
     if mirror_skills and (home / "skills").exists():
         saved = backup_dir(home / "skills")
         print(f"Backed up local skills to {saved}")
-    rsync(shared / "skills", home / "skills", delete=mirror_skills)
+    copy_tree(shared / "skills", home / "skills", delete=mirror_skills)
 
     remote_agents = shared / "AGENTS.md"
     local_agents = home / "AGENTS.md"
@@ -218,12 +248,12 @@ def export_to_vault(vault: Path) -> None:
     allowed_skill_names: set[str] = set()
     if skills_src.exists():
         for child in skills_src.iterdir():
-            if child.name in EXCLUDE_SKILL_DIRS or child.name in EXCLUDE_SHARED_SKILLS or child.name.startswith("."):
+            if child.name in EXCLUDE_SKILL_DIRS or child.name not in SHARED_SKILL_ALLOWLIST or child.name.startswith("."):
                 continue
             allowed_skill_names.add(child.name)
             target = skills_dst / child.name
             if child.is_dir():
-                rsync(child, target, delete=True)
+                copy_tree(child, target, delete=True)
             elif child.is_file():
                 shutil.copy2(child, target)
     for child in skills_dst.iterdir():
