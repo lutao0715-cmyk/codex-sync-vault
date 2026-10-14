@@ -92,6 +92,15 @@ trust_level = "trusted"
 [projects."/Users/lutao/Documents/Codex/2026-10-14/wo"]
 trust_level = "trusted"
 
+[projects."/Users/lutao/Documents/Codex/2026-10-14/ni"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-14/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-14/xia"]
+trust_level = "trusted"
+
 [plugins."codex-app-tools@openai-bundled"]
 enabled = true
 
