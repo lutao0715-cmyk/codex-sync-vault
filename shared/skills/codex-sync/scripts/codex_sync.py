@@ -100,7 +100,7 @@ def rsync(src: Path, dst: Path, delete: bool = False) -> None:
     if not src.exists():
         return
     dst.mkdir(parents=True, exist_ok=True)
-    cmd = ["rsync", "-a"]
+    cmd = ["rsync", "-a", "--exclude", "__pycache__/", "--exclude", "*.pyc"]
     if delete:
         cmd.append("--delete")
     cmd.extend([f"{src}/", f"{dst}/"])
