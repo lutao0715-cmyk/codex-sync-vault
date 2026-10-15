@@ -107,6 +107,15 @@ trust_level = "trusted"
 [projects."/Users/lutao/Documents/Codex/2026-10-15/codex-jianying-chatcut"]
 trust_level = "trusted"
 
+[projects."/Users/lutao/Documents/Codex/2026-10-15/mcp-plugin-baidu-netdisk-mcp-connector"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-15/mcp-plugin-baidu-netdisk-mcp-connector-2"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-15/twelve-labs"]
+trust_level = "trusted"
+
 [plugins."codex-app-tools@openai-bundled"]
 enabled = true
 
