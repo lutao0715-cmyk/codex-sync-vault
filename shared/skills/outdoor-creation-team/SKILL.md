@@ -66,6 +66,8 @@ user-invocable: true
 
 ## AI剪辑工具定位（重要）
 
+完整的 DaVinci 四阶段提示词见 `references/resolve-documentary-prompts.md`。涉及纪录片、人物故事或户外长素材时，按“分析素材 → 根据定稿脚本找画面 → 生成 shot list → 执行粗剪”的顺序调用；不要一次性要求 DaVinci 盲剪整部影片。
+
 当任务涉及 DaVinci Resolve MCP、ChatCut、剪映 AI、CapCut AI 或任何“AI 自动剪辑”时，必须先按以下结论判断：
 
 | 工具/环节 | 正确认知 | 风险 |
