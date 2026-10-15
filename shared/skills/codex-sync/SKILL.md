@@ -14,9 +14,10 @@ Use `scripts/codex_sync.py` as the primary helper. It is intentionally conservat
 - Syncs custom skills under `$CODEX_HOME/skills`.
 - Syncs only skills that have been explicitly reviewed as portable across both macOS and Windows. Single-OS or unreviewed skills must stay local until added to the allowlist in `scripts/codex_sync.py`.
 - Syncs `$CODEX_HOME/AGENTS.md` when present.
-- Extracts plugin enablement blocks from `$CODEX_HOME/config.toml` and applies only those blocks cross-machine.
+- Extracts only explicitly allowlisted, cross-platform plugin enablement blocks from `$CODEX_HOME/config.toml`. Browser control, computer control, local executables, DaVinci MCP paths, and other OS-specific configuration remain per-host.
 - Saves each machine's full `config.toml` as a per-host reference profile, but does not blindly apply it to other machines because paths and trusted projects are OS-specific.
-- Excludes `auth.json`, `.env`, sqlite databases, sessions, logs, cache, IPC files, shell snapshots, and other local runtime state.
+- Saves the installed-plugin manifest inside the per-host profile rather than the shared layer.
+- Excludes virtual environments, `node_modules`, compiled binaries and extensions (`.exe`, `.dll`, `.pyd`, `.so`, `.dylib`), `auth.json`, `.env`, sqlite databases, logs, caches, and other local runtime state.
 
 ## Normal Use
 

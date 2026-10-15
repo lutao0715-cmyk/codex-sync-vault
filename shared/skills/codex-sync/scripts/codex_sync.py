@@ -30,6 +30,35 @@ SHARED_SKILL_ALLOWLIST = {
     "直播复盘",
 }
 
+# Only plugin enablement that is useful on both Windows and macOS is shared.
+# Browser/computer-control plugins and anything tied to a local executable stay
+# in the per-host config profile.
+SHARED_PLUGIN_ALLOWLIST = {
+    "codex-app-tools@openai-bundled",
+    "code-review@openai-bundled",
+    "documents@openai-primary-runtime",
+    "pdf@openai-primary-runtime",
+    "presentations@openai-primary-runtime",
+    "spreadsheets@openai-primary-runtime",
+    "template-creator@openai-primary-runtime",
+    "visualize@openai-bundled",
+}
+
+LOCAL_RUNTIME_DIR_NAMES = {
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    "__pycache__",
+    "node_modules",
+    "venv",
+}
+LOCAL_RUNTIME_FILE_NAMES = {".DS_Store", ".env", "Thumbs.db", "auth.json", "desktop.ini"}
+LOCAL_RUNTIME_SUFFIXES = {
+    ".db", ".dll", ".dylib", ".exe", ".log", ".pyc", ".pyd", ".pyo", ".so", ".sqlite", ".sqlite3"
+}
+
 
 def run(cmd: list[str], cwd: Path | None = None, check: bool = True) -> subprocess.CompletedProcess[str]:
     proc = subprocess.run(cmd, cwd=cwd, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -101,7 +130,11 @@ def ensure_vault(remote: str | None) -> Path:
 
 
 def should_skip_copy(path: Path) -> bool:
-    return path.name == "__pycache__" or path.suffix == ".pyc"
+    return (
+        any(part in LOCAL_RUNTIME_DIR_NAMES for part in path.parts)
+        or path.name in LOCAL_RUNTIME_FILE_NAMES
+        or path.suffix.lower() in LOCAL_RUNTIME_SUFFIXES
+    )
 
 
 def copy_tree(src: Path, dst: Path, delete: bool = False) -> None:
@@ -151,21 +184,30 @@ def machine_id() -> str:
     return "".join(ch if ch.isalnum() or ch in ".-" else "-" for ch in raw).strip("-")
 
 
+def plugin_id_from_header(line: str) -> str | None:
+    header = line.strip()
+    if not (header.startswith("[plugins.") and header.endswith("]")):
+        return None
+    return header[len("[plugins."):-1].strip().strip('"')
+
+
 def extract_plugin_blocks(config_text: str) -> str:
     lines = config_text.splitlines()
     blocks: list[str] = []
     i = 0
     while i < len(lines):
         line = lines[i]
-        if line.strip().startswith("[plugins."):
+        plugin_id = plugin_id_from_header(line)
+        if plugin_id is not None:
             block = [line]
             i += 1
             while i < len(lines) and not lines[i].lstrip().startswith("["):
                 block.append(lines[i])
                 i += 1
-            blocks.extend(block)
-            if blocks and blocks[-1] != "":
-                blocks.append("")
+            if plugin_id in SHARED_PLUGIN_ALLOWLIST:
+                blocks.extend(block)
+                if blocks and blocks[-1] != "":
+                    blocks.append("")
             continue
         i += 1
     return "\n".join(blocks).rstrip() + ("\n" if blocks else "")
@@ -176,7 +218,8 @@ def replace_plugin_blocks(config_text: str, plugin_text: str) -> str:
     kept: list[str] = []
     i = 0
     while i < len(lines):
-        if lines[i].strip().startswith("[plugins."):
+        plugin_id = plugin_id_from_header(lines[i])
+        if plugin_id in SHARED_PLUGIN_ALLOWLIST:
             i += 1
             while i < len(lines) and not lines[i].lstrip().startswith("["):
                 i += 1
@@ -192,7 +235,7 @@ def replace_plugin_blocks(config_text: str, plugin_text: str) -> str:
 
 def write_plugin_manifest(vault: Path) -> None:
     plugins_dir = codex_home() / "plugins"
-    manifest = vault / "shared" / "plugin-manifest.txt"
+    manifest = vault / "profiles" / machine_id() / "plugin-manifest.txt"
     manifest.parent.mkdir(parents=True, exist_ok=True)
     entries: list[str] = []
     if plugins_dir.exists():
