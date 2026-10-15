@@ -279,6 +279,9 @@ def export_to_vault(vault: Path) -> None:
     home = codex_home()
     shared = vault / "shared"
     shared.mkdir(parents=True, exist_ok=True)
+    legacy_shared_manifest = shared / "plugin-manifest.txt"
+    if legacy_shared_manifest.exists():
+        legacy_shared_manifest.unlink()
 
     skills_src = home / "skills"
     skills_dst = shared / "skills"
