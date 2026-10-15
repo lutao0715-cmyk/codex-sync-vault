@@ -2,7 +2,6 @@
 name: outdoor-creation-team
 description: |
   涛哥专属的滑雪与泛户外短视频创作总入口。用于热点选题、脚本与分镜、配音稿、BGM 方案、纪录片素材理解、DaVinci 剪辑执行单、封面方案，以及按「好奇罗盘」「神秘园」「小乔大世界」风格创作。服务「滑雪研究院」和泛户外号，必须保持两号差异化。
-user-invocable: true
 ---
 
 # 户外创作团队
