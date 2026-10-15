@@ -2,7 +2,7 @@ model = "gpt-5.5"
 model_reasoning_effort = "low"
 [desktop]
 followUpQueueMode = "steer"
-conversationDetailMode = "STEPS_PROSE"
+conversationDetailMode = "STEPS_COMMANDS"
 
 [marketplaces.openai-bundled]
 source_type = "local"
@@ -99,6 +99,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/lutao/Documents/Codex/2026-10-14/xia"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-15/new-chat"]
 trust_level = "trusted"
 
 [plugins."codex-app-tools@openai-bundled"]
