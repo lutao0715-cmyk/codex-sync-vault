@@ -19,4 +19,4 @@
 
 ## 推荐顺序
 
-先用本地分析和转写完成第一版；素材数量达到几十到上百条后，再试 Twelve Labs；素材库长期积累后再装 Eagle。不要安装 Jianying/剪映作为这套 Codex + DaVinci 工作流的素材分析入口。
+先用本地分析和转写完成第一版；素材数量达到几十到上百条后，再试 Twelve Labs；素材库长期积累后再装 Eagle。剪辑执行端统一使用 DaVinci Resolve。

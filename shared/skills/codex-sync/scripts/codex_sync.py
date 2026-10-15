@@ -21,18 +21,13 @@ EXCLUDE_SKILL_DIRS = {".system"}
 # belong in the shared vault. Single-OS or unreviewed skills stay local by
 # default until they are explicitly added here.
 SHARED_SKILL_ALLOWLIST = {
-    "ai-digital-avatar-script",
-    "ai-short-drama-script",
     "codex-sync",
     "fangan-review__skillhub",
-    "hot-topic-report",
-    "live-activity-review",
-    "lynxce-voiceover-script",
+    "humanizer-zh__skillhub",
     "outdoor-creation-team",
     "product-manager",
-    "seedance-video-prompt",
-    "ski-video-production",
-    "unclecheng-reduce-ai-perception-v2__skillhub",
+    "热点",
+    "直播复盘",
 }
 
 

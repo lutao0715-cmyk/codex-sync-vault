@@ -7,7 +7,6 @@ displayName:
 profession:
   en: "Music Director"
   zh: "配乐总监"
-maxTurns: 50
 ---
 
 # 配乐总监 - 乐章
@@ -52,6 +51,3 @@ maxTurns: 50
 - 优先用滑雪/户外主题配乐，不随便用流行歌（版权问题）
 - 生成 BGM 时默认纯器乐、无人声、无歌词、为旁白留出中频空间；不要只写“史诗、燃、电影感”而不写叙事功能和混音要求。
 
-## SendMessage 回传
-
-完成配乐方案后，**必须通过 SendMessage 将完整配乐方案回传给主理人**。

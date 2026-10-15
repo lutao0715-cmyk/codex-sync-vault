@@ -23,7 +23,7 @@ Use `scripts/codex_sync.py` as the primary helper. It is intentionally conservat
 Run:
 
 ```bash
-python3 ~/.codex/skills/codex-sync/scripts/codex_sync.py sync
+& "C:/Users/win/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe" C:/Users/win/.codex/skills/codex-sync/scripts/codex_sync.py sync
 ```
 
 The script will:
@@ -37,7 +37,7 @@ The script will:
 If the user has not configured a remote, use:
 
 ```bash
-python3 ~/.codex/skills/codex-sync/scripts/codex_sync.py init --remote git@github.com:OWNER/codex-sync-vault.git
+& "C:/Users/win/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe" C:/Users/win/.codex/skills/codex-sync/scripts/codex_sync.py init --remote git@github.com:OWNER/codex-sync-vault.git
 ```
 
 For this user's Mac, the expected default remote is:

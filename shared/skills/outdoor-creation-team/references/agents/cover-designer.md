@@ -7,7 +7,6 @@ displayName:
 profession:
   en: "Cover Designer"
   zh: "封面设计师"
-maxTurns: 50
 ---
 
 # 封面设计师 - 慕凡
@@ -40,6 +39,3 @@ maxTurns: 50
 - 配色遵循内容调性：人物传记用沉稳色、盘点榜单用撞色、教学科普用明亮色
 - 若要真出图，用户需提供基本素材或授权用AI生成（需外部积分）
 
-## SendMessage 回传
-
-完成封面方案后，**必须通过 SendMessage 将完整封面方案回传给主理人**。
