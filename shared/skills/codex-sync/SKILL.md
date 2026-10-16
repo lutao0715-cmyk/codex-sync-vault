@@ -16,6 +16,7 @@ Use `scripts/codex_sync.py` as the primary helper. It is intentionally conservat
 - Syncs `$CODEX_HOME/AGENTS.md` when present.
 - Extracts only explicitly allowlisted, cross-platform plugin enablement blocks from `$CODEX_HOME/config.toml`. Browser control, computer control, local executables, DaVinci MCP paths, and other OS-specific configuration remain per-host.
 - Saves each machine's full `config.toml` as a per-host reference profile, but does not blindly apply it to other machines because paths and trusted projects are OS-specific.
+- Windows-only DaVinci/Resolve skills, MCP servers, paths, presets, and timeline rules are host-local and must never be imported into the Mac shared layer. They may remain in the Windows profile; syncing must not delete, replace, or sanitize them on Windows.
 - Saves the installed-plugin manifest inside the per-host profile rather than the shared layer.
 - Excludes virtual environments, `node_modules`, compiled binaries and extensions (`.exe`, `.dll`, `.pyd`, `.so`, `.dylib`), `auth.json`, `.env`, sqlite databases, logs, caches, and other local runtime state.
 
@@ -58,3 +59,7 @@ The GitHub repository should be private.
 - `status`: show configured paths and Git status without changing files.
 
 When a conflict occurs during Git pull or rebase, stop and explain the vault path and conflicted files. Do not delete local Codex data to resolve conflicts.
+
+## DaVinci/Resolve protection
+
+Treat all DaVinci/Resolve-related content as Windows-only unless explicitly reviewed otherwise. This includes Resolve MCP configuration, executable paths, timeline prompts, delivery presets, Resolve-specific subtitle parameters, and skills whose output is `clip_plan.json` for Resolve. Keep these in the Windows host profile only. The shared allowlists are the sole authority for cross-platform import/export, and no sync operation should remove or overwrite the Windows-local copies.

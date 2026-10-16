@@ -44,6 +44,11 @@ SHARED_PLUGIN_ALLOWLIST = {
     "visualize@openai-bundled",
 }
 
+# DaVinci/Resolve is intentionally absent from both shared allowlists. Resolve
+# MCP settings, executable paths, timeline prompts, delivery presets, and
+# Resolve-only skills remain host-local on Windows. Import/export must never
+# copy them into the shared layer or delete/overwrite the Windows copies.
+
 LOCAL_RUNTIME_DIR_NAMES = {
     ".git",
     ".mypy_cache",
