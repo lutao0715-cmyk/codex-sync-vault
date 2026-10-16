@@ -1,4 +1,4 @@
-model = "gpt-5.5"
+model = "gpt-5.6-luna"
 model_reasoning_effort = "low"
 [desktop]
 followUpQueueMode = "steer"
@@ -114,6 +114,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/lutao/Documents/Codex/2026-10-15/twelve-labs"]
+trust_level = "trusted"
+
+[projects."/Users/lutao/Documents/Codex/2026-10-16/zai"]
 trust_level = "trusted"
 
 [plugins."codex-app-tools@openai-bundled"]
