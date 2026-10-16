@@ -1,7 +1,7 @@
 ---
 name: outdoor-creation-team
 description: |
-  涛哥专属的滑雪与泛户外短视频创作总入口。用于热点选题、脚本与分镜、配音稿、BGM 方案、纪录片素材理解、DaVinci 剪辑执行单、封面方案，以及按「好奇罗盘」「神秘园」「小乔大世界」风格创作。服务「滑雪研究院」和泛户外号，必须保持两号差异化。
+  涛哥专属的滑雪与泛户外短视频创作总入口。用于热点选题、脚本与分镜、配音稿、BGM 方案、纪录片素材理解、通用剪辑执行单、封面方案，以及按「好奇罗盘」「神秘园」「小乔大世界」风格创作。服务「滑雪研究院」和泛户外号，必须保持两号差异化。
 ---
 
 # 户外创作团队
@@ -13,8 +13,7 @@ description: |
 - 两个账号必须差异化：先判断内容属于「滑雪研究院」还是泛户外号，再确定选题、口吻和画面策略。
 - 按“选题 → 脚本 → 配音 → 配乐 → 剪辑 → 封面”串行推进；前一步未定稿，不启动后一步。
 - 涛哥改过的文字逐字保留；返工基于最新版本，只改明确点名的部分。
-- 纪录片二创必须先理解素材、再定稿脚本、再做镜头级索引和 shot list，最后交给 DaVinci 执行。
-- DaVinci 是时间线执行端，不替代编导、素材理解和镜头选择。
+- 纪录片二创必须先理解素材、再定稿脚本、再做镜头级索引和通用剪辑执行单。
 
 ## 路由
 
@@ -26,7 +25,7 @@ description: |
 | 剪辑方案、字幕、花字、shot list | `references/agents/editing-director.md` |
 | 封面文案与版式 | `references/agents/cover-designer.md` |
 | 今日热点、标签、选题 | `references/agents/trend-analyst.md` |
-| 纪录片或人物长素材 | `references/media-tool-routing.md`、`references/evidence-and-rights.md`、`references/resolve-documentary-prompts.md` |
+| 纪录片或人物长素材 | `references/media-tool-routing.md`、`references/evidence-and-rights.md` |
 
 用户只要单个环节时，只读取对应文件并交付该环节，不启动完整流程。
 
@@ -62,12 +61,12 @@ description: |
 2. **脚本与分镜**：按文案编导规范产出，反复修改至定稿。
 3. **配音稿**：严格基于定稿脚本，标注停顿、重音、情绪和预计时长；不得改写口播正文。
 4. **配乐方案**：基于定稿配音节奏确定曲风、BPM、情绪曲线、进出点和旁白避让。
-5. **剪辑与 DaVinci 执行**：先产出剪辑执行单；纪录片任务按四阶段流程生成镜头级 shot list，用户确认后通过 DaVinci MCP 修改副本时间线并验收。
+5. **剪辑方案**：先产出通用剪辑执行单；纪录片任务按素材理解、镜头候选、事实核验和镜头级 shot list 推进。
 6. **封面**：基于最终主题和卖点提供 3 个可选方案；需要成图时调用 `imagegen`，不止输出文字描述。
 
 最终按实际完成范围汇总交付，不强制补齐用户没有要求的环节。
 
-## 纪录片与 DaVinci 边界
+## 纪录片素材处理边界
 
 可靠顺序只有一条：
 
@@ -79,11 +78,11 @@ description: |
 → 重点段落镜头级索引
 → shot list
 → 用户确认
-→ DaVinci 在副本时间线执行
+→ 用户在现有剪辑环境中执行
 → 审片与交付验证
 ```
 
-禁止把分钟级搜索范围直接铺进时间线。镜头候选、置信度、字幕规则、竖横屏处理、动态推近、混音与导出标准，以 `references/agents/editing-director.md` 为唯一规范；可直接复用的四阶段任务提示词以 `references/resolve-documentary-prompts.md` 为唯一模板。
+禁止把分钟级搜索范围直接当成成片镜头。镜头候选、置信度、字幕规则、竖横屏处理、动态推近、混音与导出标准，以 `references/agents/editing-director.md` 为通用规范。
 
 素材理解按规模和隐私路由：少量、本地或敏感素材优先 `video-understanding`；大量、多视频语义检索优先 TwelveLabs Jockey MCP；最终镜头判断仍由本技能完成。工具选择见 `references/media-tool-routing.md`。
 

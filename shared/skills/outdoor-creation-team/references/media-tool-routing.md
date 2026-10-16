@@ -9,7 +9,7 @@
 | 少量、本地、敏感素材；需要逐场景文件 | `video-understanding` | 本地完成场景检测、ASR和时间线索引 |
 | 大量或多视频；需要按人物、动作、对白、情绪跨片检索 | TwelveLabs Jockey MCP | 先建立知识库并上传；云端处理前确认素材允许上传 |
 | 脚本定稿后的导演判断、镜头候选与缺口 | `video-script` + 本技能 | 语义命中不是事实证明，必须复核连续画面 |
-| 正式剪辑、人声处理、字幕、混音、导出 | DaVinci Resolve MCP | 只操作副本时间线；执行前确认 shot list |
+| 剪辑方案、人声处理、字幕、混音、导出 | 用户当前可用的剪辑环境 | 根据软件能力输出通用执行单和平台参数 |
 | 下载经授权的公开视频 | `video-downloader` | 记录来源与授权状态 |
 | AI 视频补画面 | Seedance 官网 | 只生成任务单与提示词；不调用其他视频生成插件 |
 | 封面成图或修改 | `imagegen` | 真实人物优先使用用户素材，不伪造事件证据 |
@@ -25,6 +25,6 @@
 
 ## 不再恢复的旧能力
 
-不安装或调用：`video-material-analysis`、`audio-transcription`、`speech-isolate`、`script-driven-material-matcher`、`video-download`。它们分别由上述本地理解、Jockey、DaVinci 和 `video-downloader` 覆盖。
+不安装或调用：`video-material-analysis`、`audio-transcription`、`speech-isolate`、`script-driven-material-matcher`、`video-download`。它们分别由上述本地理解、Jockey 和 `video-downloader` 覆盖。
 
 本机路径、虚拟环境、二进制、密钥和主机专属插件不得写入本技能或同步仓库。
